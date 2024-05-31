@@ -11,6 +11,7 @@
 1. Start Prometheus
 ```
 docker compose up -d prometheus
+docker-compose logs -f prometheus
 ```
 
 2. To verify it works: 
@@ -115,6 +116,21 @@ prometheus_engine_query_duration_seconds_count{slice="inner_eval"} 53
 ```
 
 
+### Setup Node Exporter
+
+1. Start Prometheus
+```
+docker compose up -d node-exporter
+docker-compose logs -f node-exporter
+```
+
+2. To verify it works: 
+```
+http://localhost:9100/metrics
+```
+
 
 ### References
 - [Metric types](https://prometheus.io/docs/concepts/metric_types/)
+
+- [Node Exporter](https://prometheus.io/docs/guides/node-exporter/)
