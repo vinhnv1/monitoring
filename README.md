@@ -118,7 +118,7 @@ prometheus_engine_query_duration_seconds_count{slice="inner_eval"} 53
 
 ### Setup Node Exporter
 
-1. Start Prometheus
+1. Start Node Exporter
 ```
 docker compose up -d node-exporter
 docker-compose logs -f node-exporter
@@ -129,6 +129,18 @@ docker-compose logs -f node-exporter
 http://localhost:9100/metrics
 ```
 
+### Setup Grafana
+
+1. Start Grafana
+```
+docker compose up -d grafana
+docker-compose logs -f grafana
+```
+
+2. To verify it works: 
+```
+http://localhost:3100
+```
 
 ### References
 - [Metric types](https://prometheus.io/docs/concepts/metric_types/)
