@@ -142,7 +142,23 @@ docker-compose logs -f grafana
 http://localhost:3100
 ```
 
+3. Add Dashboard
+
+- Total requests
+```
+promhttp_metric_handler_requests_total {code="200"}
+```
+
+- CPU rate
+```
+rate(node_cpu_seconds_total{job="node", mode="system"}[$__rate_interval])
+```
+
 ### References
 - [Metric types](https://prometheus.io/docs/concepts/metric_types/)
 
 - [Node Exporter](https://prometheus.io/docs/guides/node-exporter/)
+
+- [Client Libraries](https://prometheus.io/docs/instrumenting/clientlibs/#client-libraries)
+
+- [Prometheus Go client library](https://github.com/prometheus/client_golang)
