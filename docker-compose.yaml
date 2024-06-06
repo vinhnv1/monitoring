@@ -18,8 +18,7 @@ services:
     networks:
       - monitoring
     ports:
-      - 9090:9090
-    
+      - "9090:9090"
 
   node-exporter:
     image: prom/node-exporter
@@ -28,12 +27,23 @@ services:
     networks:
       - monitoring
     ports:
-      - 9100:9100
-    
+      - "9100:9100"
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: unless-stopped
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks:
+      - monitoring
+    ports:
+     - "3100:3000"
+
 networks:
   monitoring:
     name: monitoring-local
 
 volumes:
   prometheus-data:
-    driver: local
+  grafana-data:

@@ -118,7 +118,7 @@ prometheus_engine_query_duration_seconds_count{slice="inner_eval"} 53
 
 ### Setup Node Exporter
 
-1. Start Prometheus
+1. Start Node Exporter
 ```
 docker compose up -d node-exporter
 docker-compose logs -f node-exporter
@@ -129,8 +129,36 @@ docker-compose logs -f node-exporter
 http://localhost:9100/metrics
 ```
 
+### Setup Grafana
+
+1. Start Grafana
+```
+docker compose up -d grafana
+docker-compose logs -f grafana
+```
+
+2. To verify it works: 
+```
+http://localhost:3100
+```
+
+3. Add Dashboard
+
+- Total requests
+```
+promhttp_metric_handler_requests_total {code="200"}
+```
+
+- CPU rate
+```
+rate(node_cpu_seconds_total{job="node", mode="system"}[$__rate_interval])
+```
 
 ### References
 - [Metric types](https://prometheus.io/docs/concepts/metric_types/)
 
 - [Node Exporter](https://prometheus.io/docs/guides/node-exporter/)
+
+- [Client Libraries](https://prometheus.io/docs/instrumenting/clientlibs/#client-libraries)
+
+- [Prometheus Go client library](https://github.com/prometheus/client_golang)
