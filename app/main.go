@@ -27,14 +27,14 @@ func router() chi.Router {
 }
 
 func testMetricCounter() func(w http.ResponseWriter, r *http.Request) {
-	// Create a custom metric for the test-metrics endpoint
+	// Create a custom metric
 	myCounter := promauto.NewCounter(prometheus.CounterOpts{
-		Name: "test_custom_metric",
+		Name: "test_golang_metric",
 		Help: "A custom metric to demonstrate pushing to Prometheus",
 	})
 
-	// Increment the custom metric on each request
-	myCounter.Inc()
+	// Add value
+	myCounter.Add(60)
 
 	return promhttp.Handler().ServeHTTP
 }
